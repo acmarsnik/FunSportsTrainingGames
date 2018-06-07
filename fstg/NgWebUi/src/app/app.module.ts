@@ -5,6 +5,8 @@ import { RouterModule, Routes } from "@angular/router";
 
 import { AppComponent } from './app.component';
 import { TargetAddComponent } from './baseball/pitching/target-add/target-add.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 const appRoutes: Routes = [
   {path: 'baseball/pitching/targetAdd', component: TargetAddComponent}
@@ -17,7 +19,13 @@ const appRoutes: Routes = [
   ],
   imports: [
     RouterModule.forRoot(appRoutes, {enableTracing: false}),
-    BrowserModule
+    BrowserModule, 
+    ReactiveFormsModule,
+    CommonModule, 
+    FormsModule
+  ],
+  exports: [
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
