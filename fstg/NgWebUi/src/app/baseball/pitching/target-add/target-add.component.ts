@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";
+import { TargetService } from '../../../services/target.service';
 
 @Component({
   selector: 'app-target-add',
@@ -10,8 +11,10 @@ export class TargetAddComponent implements OnInit {
   
   inputForm: FormGroup;
   score: number;
+  isVisible: boolean = false;
+  showHideText: string = 'Show';
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private TargetService: TargetService) {
     this.createForm();
     this.inputForm.setValue({scoreInput: 0})
   }
@@ -27,11 +30,19 @@ export class TargetAddComponent implements OnInit {
 
   onSubmit(){
     this.score = this.inputForm.value.scoreInput;
+    this.TargetService.addTarget(this.score);
     
   }
 
-  printScore(){
-    console.log('score: ', this.score);
+  showHide(){
+    if(this.isVisible){
+      this.isVisible = false;
+      this.showHideText = 'Show'
+    }
+    else{
+      this.isVisible = true;
+      this.showHideText = 'Hide'
+    }
   }
 
 }
